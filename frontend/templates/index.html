@@ -13,10 +13,11 @@
 <div id='core'>
     <table>
         <tr>
-            <th>Block Index</th>
-            <th>Previous Hash</th>
+            <th>{{"Block Index".center(20)}}</th>
+            <th>{{"Previous Hash".center(1000)}}</th>
             <th>Block Hash</th>
             <th>Transaction</th>
+            <th>Value</th>
             <th>Timestamp</th>
         </tr>
         {% for block in chain %}
@@ -25,6 +26,7 @@
             <td>{{"0x" + block.previous_hash[0:6] + " ... " + block.previous_hash[-5:-1]}}</td>
             <td>{{"0x" + block.hash[0:6] + " ... " + block.hash[-5:-1]}}</td>
             <td>{{block.data}}</td>
+            <td>{{block.txValue}}</td>
             <td>{{block.timestamp}}</td>
         </tr>
         {% endfor %}

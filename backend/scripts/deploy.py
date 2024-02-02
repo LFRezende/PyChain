@@ -4,7 +4,7 @@ import hashlib
 
 def tx(amount, payer, receiver):
     message = f"  {str(payer).capitalize()} -> {str(receiver.capitalize())}: {amount:.1f} PTC  "
-    return message.center(len(message) + 28) 
+    return (message.center(len(message) + 28), amount)
 
 def store():
     Block()
@@ -19,9 +19,9 @@ while True:
     if op == 1:
         name = str(input("State your name:      ")).capitalize().strip()
         time = date.datetime.now()
-        name = name + str(NONCE) + str(time)
-        wallet = "0x" +  hashlib.sha256(name.encode()).hexdigest()
-        blockchain.add_block(Block(NONCE, time , f"Wallet created: {wallet[0:8]} ..."))
+        name_raw = name + str(NONCE) + str(time)
+        wallet = "0x" +  hashlib.sha256(name_raw.encode()).hexdigest()
+        blockchain.add_block(Block(NONCE, time , (f"Wallet created: {wallet[0:8]} ...", 0 )))
         NONCE = NONCE + 1
     elif op >= 3 or op <= 0:
         break

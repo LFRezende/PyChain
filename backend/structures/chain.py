@@ -2,17 +2,24 @@ import hashlib
 import datetime as date
 
 class Block:
-    def __init__(self, index, timestamp, data, previous_hash = ""):
+    def __init__(self, index, timestamp, data = (" (-) ", 0), previous_hash = ""):
         self.index = index
         self.timestamp = timestamp
-        self.data = data
+        self.data = data[0] # Information for the tx
+        # Safeguard againt deleting money.
+        txValue = data[1] # The value it carries
+        if txValue < 0:
+            self.txValue = 0
+        else:
+            self.txValue = txValue
         self.previous_hash = previous_hash
         self.hash = self.blockHash()
 
     def blockHash(self):
         nonce = str(self.index)
         blockTime = str(self.timestamp)
-        blockData = str(self.data)
+        txValue = self.data[1]
+        blockData = str(self.data[0]) + str(txValue)
         prevHash = str(self.previous_hash)
 
         # Compile all and then return the hashed form.
@@ -26,7 +33,7 @@ class Blockchain:
         self.chain = [self.genesis()]
     
     def genesis(self):
-        return Block(0, date.datetime.now(), "Genesis Block")
+        return Block(0, date.datetime.now(), ("Genesis Block".center(30), 0))
 
     def last_block(self):
         return self.chain[-1]
