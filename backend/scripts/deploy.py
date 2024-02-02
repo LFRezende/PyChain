@@ -14,10 +14,10 @@ def store():
 blockchain = Blockchain()
 NONCE = 1
 while True:
-    print("--- Select your option: --- ")
-    op = int(input(" _-_-_-_-_- \n1 - Register your name and get a wallet.\n 2 - Pay some PTC to some friend\n 3- End.\n  _-_-_-_-_- "))
+    print("===== PyChain Environment ===== ")
+    op = int(input("=============================== \n[1] - Register your name and get a wallet.\n[2] - Pay some PTC to some friend\n[3] - End.\n=============================== "))
     if op == 1:
-        name = str(input("Input your name")).capitalize().strip()
+        name = str(input("State your name:      ")).capitalize().strip()
         time = date.datetime.now()
         name = name + str(NONCE) + str(time)
         wallet = "0x" +  hashlib.sha256(name.encode()).hexdigest()
