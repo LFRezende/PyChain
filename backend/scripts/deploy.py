@@ -13,18 +13,18 @@ def store():
 
 blockchain = Blockchain()
 NONCE = 1
-
-print("--- Select your option: --- ")
-op = int(input(" _-_-_-_-_- \n1 - Register your name and get a wallet.\n 2 - Pay some PTC to some friend\n 3- End.\n  _-_-_-_-_- "))
-if op == 1:
-    name = str(input("Input your name")).capitalize().strip()
-    time = date.datetime.now()
-    name = name + str(NONCE) + str(time)
-    wallet = "0x" +  hashlib.sha256(name.encode()).hexdigest()
-    blockchain.add_block(Block(NONCE, time , f"Wallet created: {wallet[0:8]} ..."))
-    NONCE = NONCE + 1
-
-
+while True:
+    print("--- Select your option: --- ")
+    op = int(input(" _-_-_-_-_- \n1 - Register your name and get a wallet.\n 2 - Pay some PTC to some friend\n 3- End.\n  _-_-_-_-_- "))
+    if op == 1:
+        name = str(input("Input your name")).capitalize().strip()
+        time = date.datetime.now()
+        name = name + str(NONCE) + str(time)
+        wallet = "0x" +  hashlib.sha256(name.encode()).hexdigest()
+        blockchain.add_block(Block(NONCE, time , f"Wallet created: {wallet[0:8]} ..."))
+        NONCE = NONCE + 1
+    elif op >= 3 or op <= 0:
+        break
 
 
 blockchain.add_block(Block(NONCE, date.datetime.now(),tx(5, "Alice", "Senai")))
