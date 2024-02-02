@@ -47,6 +47,18 @@ Note: For now, the first while loop of options must be disregarded.  Hit an end 
 
 
 
+## NEXT STEPS ##
+
+### Operational ###
+- IRT adding of new transactions/wallets
+- Wallet pallet
+- Output file for re-loading chain (with verification algorithm for validity and PoW)
+- Add terminal commands and environment
+
+### Aesthetic  ###
+- Add better formatting to table
+- Better webpage design
+
 
 
 

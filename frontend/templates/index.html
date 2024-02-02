@@ -26,11 +26,14 @@
             <td>{{"0x" + block.previous_hash[0:6] + " ... " + block.previous_hash[-5:-1]}}</td>
             <td>{{"0x" + block.hash[0:6] + " ... " + block.hash[-5:-1]}}</td>
             <td>{{block.data}}</td>
-            <td>{{block.txValue}}</td>
+            <td>{{block.txValue}} PYC</td>
             <td>{{block.timestamp}}</td>
         </tr>
         {% endfor %}
     </table>
+    <div id="controlPanel">
+        <button id=Transfer>Create Wallet</button>
+    </div>
 </div>
 
 {% endblock %}
