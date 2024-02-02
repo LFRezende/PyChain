@@ -12,3 +12,7 @@ https://medium.com/pythoneers/building-a-blockchain-from-scratch-with-python-489
 
 Hence, I'd like to first thank the author for the kickstart.
 
+Other functions and improvements are my complete authorship, though.
+
+
+
