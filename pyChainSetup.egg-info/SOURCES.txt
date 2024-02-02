@@ -1,0 +1,6 @@
+README.md
+setup.py
+pyChainSetup.egg-info/PKG-INFO
+pyChainSetup.egg-info/SOURCES.txt
+pyChainSetup.egg-info/dependency_links.txt
+pyChainSetup.egg-info/top_level.txt

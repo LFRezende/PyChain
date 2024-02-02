@@ -2,7 +2,7 @@ import hashlib
 import datetime as date
 
 class Block:
-    def __init__(self, index, timestamp, data, previous_hash):
+    def __init__(self, index, timestamp, data, previous_hash = ""):
         self.index = index
         self.timestamp = timestamp
         self.data = data
@@ -26,7 +26,7 @@ class Blockchain:
         self.chain = [self.genesis()]
     
     def genesis(self):
-        return Block(0, date.datetime.now(), "T3 Scored - 41 Remaining.")
+        return Block(0, date.datetime.now(), "Genesis Block")
 
     def last_block(self):
         return self.chain[-1]
@@ -52,3 +52,15 @@ class Blockchain:
                 print(message)
                 return (False, message)
         return (True, "### Chain Verified ###")
+    
+    def read_chain(self):
+        print("\n|_-_-_-_ PyChain Ledger _-_-_-_|")
+        print(f"\nRequest time: {date.datetime.now()}")
+        for k, v in enumerate(self.chain):
+            print(f"\nBlock no.{v.index}:")
+            print(f" - Hash: 0x{v.hash}")
+            print(f" - Previous Hash: 0x{v.previous_hash}")
+            print(f" - Data: {v.data} ")
+            print(f" - Timestamp: {v.timestamp}")
+
+
