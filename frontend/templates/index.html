@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{% block head %}
+<div id="greetings">
+    <h1> PyChain</h1>
+</div>
+<div>
+    <h2> Blockchain Log</h2>
+</div>
+{% endblock %}
+
+{% block body %}
+<div id='core'>
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Added</th>
+            <th>Actions</th>
+        </tr>
+        {%for task in tasks%}
+        <tr>
+            <td>a</td>
+            <td>b</td>
+            <td>c</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
