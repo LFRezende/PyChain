@@ -15,14 +15,13 @@ def index():
         if "button_tx" in request.form:
             return "Not avaiable yet :("
         if "button_allWallets" in request.form:
-            print("CHEGOUuuuuu\nUuuUuUu\nUuU\nuUu\n\na")
             Ok = True
         #noTerminal(globalNonce, blockchain)
         #nonce = simTerminal(NONCE, blockchain)
-        return render_template('index.html', chain = blockchain.chain, ok = Ok, wallets = blockchain.wallets)
+        return redirect("/")
         
     elif request.method == "GET":
-        return render_template('index.html', chain = blockchain.chain, ok = Ok)
+        return render_template('index.html', chain = blockchain.chain, ok = Ok, wallets = blockchain.wallets)
     
 if __name__ == "__main__":
     app.run(debug=True)
