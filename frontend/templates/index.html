@@ -45,14 +45,29 @@
                 <h4>Insert amount of PYC for transfer</h4>
                 <input type="text" name="txPYC" value="" id="txAmount" class = "button">
             </div>
+            {% if txValue %}
+            <div>
+                <p>Invalid amount of PYC</p>
+            </div>
+            {% endif %}
             <div>
             <h4>Insert YOUR wallet address</h4>
             <input type="text" name="txYOURWallet" value="" id="txSender" class = "button">
             </div>
+            {% if checkSender == false %}
+            <div>
+                <p>txSend reverted: This txSender does not exist.</p>
+            </div>
+            {% endif %}
             <div>
             <h4>Insert the receiver wallet address</h4>
             <input type="text" name="txWallet" value="" id="txReceiver" class = "button">
             </div>
+            {% if  checkReceiver == false %}
+            <div>
+                <p>txSend reverted: This txReceiver does not exist.</p>
+            </div>
+            {% endif %}
             <div>
             <h4>After filling all above, click "Send".</h4>
             <input type="submit" name="send" value="Send" id="txSend" class = "button">

@@ -7,6 +7,9 @@ Ok_Wallet = False
 txRequest = False
 k1 = 0
 k2 = 0
+checkSender = False
+checkReceiver = False
+enoughPYC = True
 @app.route('/', methods = ['POST', 'GET'])
 
 def index():
@@ -15,10 +18,16 @@ def index():
         global txRequest
         global k1
         global k2
+        global checkSender
+        global checkReceiver
+        global enoughPYC
         Ok_Wallet = False
         txRequest = False
         k1 = 0
         k2 = 0
+        checkSender = True
+        checkReceiver = True
+        enoughPYC = True
         if "button_wallet" in request.form:
             createWalletWeb(blockchain.nonce, blockchain, "")
         if "button_allWallets" in request.form:
@@ -34,10 +43,14 @@ def index():
                 print(f"txValue reverted: No cash sent.")
             # Check if sender exists:
             checkSender = False
+            enoughPYC = True
             for k, v in enumerate(blockchain.wallets):
                 if v["address"] == txSender:
                     checkSender = True
                     k1 = k
+                    if txValue > v["balance"]:
+                        enoughPYC = False
+                        print("Transaction Reverted: txSender lacks funds for this tx.")
                     break
             if not checkSender:
                 print("txSender reverted: This txSender does not exist.")
@@ -51,7 +64,7 @@ def index():
             if not checkReceiver:
                 print("txReceiver reverted: This txReceiver does not exist.")
             
-            if checkReceiver and checkSender and txValue > 0:
+            if checkReceiver and checkSender and txValue > 0 and enoughPYC:
                 #Sender loses money
                 blockchain.wallets[k1]["balance"] = blockchain.wallets[k1]["balance"] - txValue
 
@@ -59,15 +72,24 @@ def index():
                 blockchain.wallets[k2]["balance"] = blockchain.wallets[k2]["balance"] + txValue
 
                 # Appending block of the transaction
-                blockchain.add_block(Block(blockchain.nonce, date.datetime.now(),(f"Tx: {txSender[0:6]} ... -> {txReceiver[0:6]} ...", txValue)))
-                    
+                blockchain.add_block(Block(blockchain.nonce, date.datetime.now(),(f"Tx: {txSender[0:6]} ... ---> {txReceiver[0:6]} ...", txValue)))
+            else:
+                if not enoughPYC:
+                    pass
+                if not checkSender:
+                    pass
+                if not checkReceiver:
+                    pass
+                if txValue <= 0:
+                    pass
+
 
         #noTerminal(globalNonce, blockchain)
         #nonce = simTerminal(NONCE, blockchain)
         return redirect("/")
         
     elif request.method == "GET":
-        return render_template('index.html', chain = blockchain.chain, ok = Ok_Wallet, txRequest = txRequest, wallets = blockchain.wallets)
+        return render_template('index.html', chain = blockchain.chain, ok = Ok_Wallet, txRequest = txRequest, wallets = blockchain.wallets, enoughPYC = enoughPYC, )
     
 if __name__ == "__main__":
     app.run(debug=True)
