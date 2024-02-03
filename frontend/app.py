@@ -19,6 +19,42 @@ def index():
             Ok_Wallet = True
         if "button_tx" in request.form:
             txRequest = True
+        if "send" in request.form:
+            txValue = request.form["txPYC"]
+            txSender = request.form["txYOURWallet"].strip()
+            txReceiver = request.form["txWallet"].strip()
+            if txValue < 0:
+                txValue = 0
+                print(f"txValue reverted: No cash sent.")
+            # Check if sender exists:
+            checkSender = False
+            for k, v in enumerate(blockchain.wallets):
+                if v["address"] == txSender:
+                    checkSender = True
+                    k1 = k
+                    break
+            if not checkSender:
+                print("txSender reverted: No wallet as referenced was registered.")
+            # Check if receiver exists:
+            checkReceiver = False
+            for k, v in enumerate(blockchain.wallets):
+                if v["address"] == txReceiver:
+                    checkReceiver = True
+                    k2 = k
+                    break
+            if not checkReceiver:
+                print("txReceiver reverted: No wallet as referenced was registered.")
+            
+            #Sender loses money
+            blockchain.wallets[k1]["balance"] = blockchain.wallets[k1]["balance"] - txValue
+
+            #Receiver gets money
+            blockchain.wallets[k2]["balance"] = blockchain.wallets[k2]["balance"] + txValue
+
+            # Appending block of the transaction
+            blockchain.add_block(Block(blockchain.nonce, date.datetime.now(),f"Tx: {txSender[0:6]} ... -> {txReceiver[0:6]} ..."))
+
+                    
 
         #noTerminal(globalNonce, blockchain)
         #nonce = simTerminal(NONCE, blockchain)
