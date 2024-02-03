@@ -3,7 +3,25 @@ body {
     font-family: Arial, Helvetica, sans-serif
 }
 
-table,
+table {
+    border-collapse: collapse;
+    border: 1px solid;
+
+}
+
+.commonDiv {
+    max-width: 1000px;
+    margin: auto;
+    background: white;
+    padding: 15px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 th,
 td {
     border: 1px solid;

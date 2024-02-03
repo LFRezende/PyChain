@@ -1,16 +1,17 @@
 {% extends 'base.html'%}
 
 {% block head %}
-<div id="greetings">
-    <h1> PyChain</h1>
+<div id = "site">
+<div id="greetings" class = "commonDiv">
+    <h1 class="center"> PyChain</h1>
 </div>
-<div>
-    <h2> Blockchain Log</h2>
+<div class = "center">
+    <h2 class = "center"> Blockchain Log</h2>
 </div>
 {% endblock %}
 
 {% block body %}
-<div id='core'>
+<div id='core' class = "commonDiv">
     <table>
         <tr>
             <th>{{"Block Index".center(20)}}</th>
@@ -36,8 +37,8 @@
         <input type="submit" name="button_tx" value="Transfer" id="txCall">
         <input type="submit" name="button_allWallets" value="List Wallets" id="wallets">
     </form>
-
-    <h2>List of Wallets:</h2>
+    <div class = "commonDiv">
+    <h2 class = "center" id = "listOfWallets">List of Wallets:</h2>
     <table>
     <tr>
         <th>Address</th>
@@ -52,9 +53,11 @@
         {% endfor %}
     {% endif %}
     <table/>
+    </div>
+    
     
 
 
 </div>
-
 {% endblock %}
+</div>
