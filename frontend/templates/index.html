@@ -38,14 +38,14 @@
         <input type="submit" name="button_allWallets" value="List Wallets" id="wallets" class = "button">
     </form>
     
-    {% if txRequest %}
+    {% if txRequest == true %}
         <div class = "center">
             <form action="/" method="POST">
             <div>
                 <h4>Insert amount of PYC for transfer</h4>
                 <input type="text" name="txPYC" value="" id="txAmount" class = "button">
             </div>
-            {% if txValue %}
+            {% if (txValue < 0 ) %}
             <div>
                 <p>Invalid amount of PYC</p>
             </div>
@@ -69,8 +69,8 @@
             </div>
             {% endif %}
             <div>
-            <h4>After filling all above, click "Send".</h4>
-            <input type="submit" name="send" value="Send" id="txSend" class = "button">
+                <h4>After filling all above, click "Send".</h4>
+                <input type="submit" name="send" value="Send" id="txSend" class = "button">
             </div>
             
             </form>

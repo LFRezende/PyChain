@@ -10,6 +10,7 @@ k2 = 0
 checkSender = False
 checkReceiver = False
 enoughPYC = True
+txValue = 0
 @app.route('/', methods = ['POST', 'GET'])
 
 def index():
@@ -21,6 +22,8 @@ def index():
         global checkSender
         global checkReceiver
         global enoughPYC
+        global txValue
+        txValue = 0
         Ok_Wallet = False
         txRequest = False
         k1 = 0
@@ -89,7 +92,7 @@ def index():
         return redirect("/")
         
     elif request.method == "GET":
-        return render_template('index.html', chain = blockchain.chain, ok = Ok_Wallet, txRequest = txRequest, wallets = blockchain.wallets, enoughPYC = enoughPYC, )
+        return render_template('index.html', chain = blockchain.chain, ok = Ok_Wallet, txRequest = txRequest, wallets = blockchain.wallets, enoughPYC = enoughPYC, txValue = txValue )
     
 if __name__ == "__main__":
     app.run(debug=True)
