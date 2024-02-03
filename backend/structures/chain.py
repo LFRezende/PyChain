@@ -1,6 +1,6 @@
 import hashlib
 import datetime as date
-
+wallets = list()
 class Block:
     def __init__(self, index, timestamp, data = (" (-) ", 0), previous_hash = ""):
         self.index = index
@@ -31,6 +31,8 @@ class Block:
 class Blockchain:
     def __init__(self):
         self.chain = [self.genesis()]
+        self.nonce = len(self.chain)
+        self.wallets = wallets
     
     def genesis(self):
         return Block(0, date.datetime.now(), ("Genesis Block".center(30), 0))
