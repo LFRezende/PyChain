@@ -5,14 +5,20 @@ app = Flask(__name__)
 blockchain = Blockchain()
 Ok_Wallet = False
 txRequest = False
+k1 = 0
+k2 = 0
 @app.route('/', methods = ['POST', 'GET'])
 
 def index():
     if request.method == 'POST':
         global Ok_Wallet
         global txRequest
+        global k1
+        global k2
         Ok_Wallet = False
         txRequest = False
+        k1 = 0
+        k2 = 0
         if "button_wallet" in request.form:
             createWalletWeb(blockchain.nonce, blockchain, "")
         if "button_allWallets" in request.form:
@@ -20,7 +26,7 @@ def index():
         if "button_tx" in request.form:
             txRequest = True
         if "send" in request.form:
-            txValue = request.form["txPYC"]
+            txValue = int(request.form["txPYC"].strip())
             txSender = request.form["txYOURWallet"].strip()
             txReceiver = request.form["txWallet"].strip()
             if txValue < 0:
@@ -52,7 +58,8 @@ def index():
             blockchain.wallets[k2]["balance"] = blockchain.wallets[k2]["balance"] + txValue
 
             # Appending block of the transaction
-            blockchain.add_block(Block(blockchain.nonce, date.datetime.now(),f"Tx: {txSender[0:6]} ... -> {txReceiver[0:6]} ..."))
+            
+            blockchain.add_block(Block(blockchain.nonce, date.datetime.now(),(f"Tx: {txSender[0:6]} ... -> {txReceiver[0:6]} ...", txValue)))
 
                     
 

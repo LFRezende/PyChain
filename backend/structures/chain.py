@@ -7,7 +7,7 @@ class Block:
         self.timestamp = timestamp
         self.data = data[0] # Information for the tx
         # Safeguard againt deleting money.
-        txValue = data[1] # The value it carries
+        txValue = int(data[1]) # The value it carries
         if txValue < 0:
             self.txValue = 0
         else:
