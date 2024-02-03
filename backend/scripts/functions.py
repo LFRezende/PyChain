@@ -26,8 +26,6 @@ def createWalletWeb(nonce, blockchain, name, infCash = True):
         wallet = "0x" +  hashlib.sha256(name_raw.encode()).hexdigest()
         walletBalance = 0
         blockchain.add_block(Block(nonce, time , (f"Wallet created: {wallet}", 0 )))
-        nonce = nonce + 1
-        blockchain.nonce = nonce
         if infCash:
              walletBalance = 100
         wallets.append({"address": wallet, "balance": walletBalance})

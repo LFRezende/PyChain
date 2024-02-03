@@ -40,7 +40,7 @@ def index():
                     k1 = k
                     break
             if not checkSender:
-                print("txSender reverted: No wallet as referenced was registered.")
+                print("txSender reverted: This txSender does not exist.")
             # Check if receiver exists:
             checkReceiver = False
             for k, v in enumerate(blockchain.wallets):
@@ -49,18 +49,17 @@ def index():
                     k2 = k
                     break
             if not checkReceiver:
-                print("txReceiver reverted: No wallet as referenced was registered.")
+                print("txReceiver reverted: This txReceiver does not exist.")
             
-            #Sender loses money
-            blockchain.wallets[k1]["balance"] = blockchain.wallets[k1]["balance"] - txValue
+            if checkReceiver and checkSender and txValue > 0:
+                #Sender loses money
+                blockchain.wallets[k1]["balance"] = blockchain.wallets[k1]["balance"] - txValue
 
-            #Receiver gets money
-            blockchain.wallets[k2]["balance"] = blockchain.wallets[k2]["balance"] + txValue
+                #Receiver gets money
+                blockchain.wallets[k2]["balance"] = blockchain.wallets[k2]["balance"] + txValue
 
-            # Appending block of the transaction
-            
-            blockchain.add_block(Block(blockchain.nonce, date.datetime.now(),(f"Tx: {txSender[0:6]} ... -> {txReceiver[0:6]} ...", txValue)))
-
+                # Appending block of the transaction
+                blockchain.add_block(Block(blockchain.nonce, date.datetime.now(),(f"Tx: {txSender[0:6]} ... -> {txReceiver[0:6]} ...", txValue)))
                     
 
         #noTerminal(globalNonce, blockchain)

@@ -45,6 +45,7 @@ class Blockchain:
         # O previous hash sofre overwriting, mesmo que ele já tenha.
         next_block.previous_hash = self.last_block().hash
         self.chain.append(next_block)
+        self.nonce = self.nonce + 1
     
     def check_chain(self):
         for j in range(1, len(self.chain)):
