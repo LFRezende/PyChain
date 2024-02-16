@@ -33,7 +33,6 @@ As we transact through the simulated environment of the deploy.py, we can choose
 - Transfer tokens to another address
 - Register some information
 
-In the near future, I wish to implement theses tasks through the UI, and well as create output text files to save the made blockchain for future uses.
 
 The blockchain is created (and therefore its genesis block) the second we enter to deploy the script.
 
@@ -41,10 +40,27 @@ For now, we can create wallets that are made hashing our names with some other d
 
 These are compiled into the blockchain, and when we finish inserting data, the flask server activates and the UI loads the transactions made in localhost:5000.
 
-Note: For now, the first while loop of options must be disregarded.  Hit an end key (such as 4) to end the first loop. A second one will start, and this will be the one to add data.
 
 
+# How to install it
 
+- Make sure to have PYTHON and FLASK correctly installed, as well as some code editor (Visual Studio Code recommended)
+- Enable extensions to Live Server
+- GIT CLONE this repo in some project folder via the ``` git clone ``` command in your terminal.
+- Run one of the commands below:
+
+  ```bash
+  python3 frontend/app.py
+  ```
+
+  ```bash
+  python frontend/app.py
+  ```
+- Keep the terminal node running, and then access your localhost :5000
+
+  You should be able to interact with the project.
+
+  
 
 
 ## NEXT STEPS ##
@@ -54,6 +70,8 @@ Note: For now, the first while loop of options must be disregarded.  Hit an end 
 - Wallet pallet
 - Output file for re-loading chain (with verification algorithm for validity and PoW)
 - Add terminal commands and environment
+- Add the Actual Proof of Work consensus mechanism for block detection and consistency[
+- Decentralize the network to other systems.
 
 ### Aesthetic  ###
 - Add better formatting to table
