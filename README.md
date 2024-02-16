@@ -1,5 +1,5 @@
 # Pychain 
-
+### Still Ongoing
 A custom-made Proof of Work Blockchain, made in Python.
 It is a simple project, just for fun!
 
